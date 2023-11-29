@@ -1,9 +1,25 @@
-format = "$directory\n[>](bold purple)"
-#(bg:#434C5E fg:#4C566A)
+# Use custom format
+format = '''
+$directory$rust$package
+[>](bold green) '''
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+# Set 'foo' as custom color palette
+palette = 'foo'
+
+# Define custom colors
+[palettes.foo]
+# Overwrite existing color
+blue = '21'
+# Define new color
+mustard = '#af8700'
 
 [directory]
-format = "[$path]($style)"
-style = "bold green"#"bg:#434C5E"
-truncate_to_repo = false
 truncation_length = 1
-truncation_symbol = ""
+truncation_symbol = '../'
+read_only = ' * '
