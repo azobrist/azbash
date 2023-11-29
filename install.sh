@@ -11,6 +11,7 @@ home=$(pwd)
 repo=/home/$user/azbash
 
 mkdir -p /home/$user/.config
+mkdir -p /home/$user/.config/kitty
 
 apt update
 apt upgrade -y
@@ -24,13 +25,16 @@ mv /home/$user/.bashrc $repo/bashrc.bkp
 
 ln -svf $repo/.bashrc /home/$user/.bashrc
 ln -svf $repo/starship.toml /home/$user/.config/starship.toml
-#ln -svf $repo/kitty.conf /home/$user/config/kitty/kitty.conf
-
-chown -R $user:$user /home/$user/.config
+ln -svf $repo/kitty.conf /home/$user/config/kitty/kitty.conf
 
 ln -svf $repo/.gitconfig /home/$user/.gitconfig
-read -p "Enter git username" gituser
-read -p "Enter git email" gitemail
+
+chown -R $user:$user /home/$user/.config
+chown $user:$user /home/$user/.bashrc
+chown $user:$user /home/$user/.gitconfig
+
+read -p "Enter git username: " gituser
+read -p "Enter git email: " gitemail
 
 git config --global user.name $gituser
 git config --global user.email $gitemail
